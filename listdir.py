@@ -11,6 +11,7 @@ argParser.add_argument("-i", "--index", help="Generate an index file containing 
 argParser.add_argument("-n", "--nlist", help="Do not list files in console.", action="store_true")
 argParser.add_argument("-f", "--folder", help="Include folders.", action="store_true")
 argParser.add_argument("-p", "--path", help="Path to use. Will use working directory if not specified.")
+argParser.add_argument("-b", "--bare", help="Removes header information when used.", action="store_true")
 
 args = argParser.parse_args()
 
@@ -25,7 +26,8 @@ if not os.path.exists(directory):
 	print("Directory specified does not exist. Try again!")
 	sys.exit(1)
 else:
-	print("Directory of '{}'\n".format(os.path.abspath(directory)))
+	if not args.bare:
+		print("Directory of '{}'\n".format(os.path.abspath(directory)))
 
 #Open index file if --index arg is specified.
 if args.index:
