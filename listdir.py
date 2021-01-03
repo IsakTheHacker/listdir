@@ -7,9 +7,9 @@ import argparse
 argParser = argparse.ArgumentParser()
 
 #Add arguments to the parser
-argParser.add_argument("--index", "-i", help="Generate an index file containing all the files/folders in a directory.", action="store_true")
-argParser.add_argument("--nlist", "-n", help="Do not list files in console.", action="store_true")
-argParser.add_argument("--folder", "-f", help="Include folders.", action="store_true")
+argParser.add_argument("-i", "--index", help="Generate an index file containing all the files/folders in a directory.", action="store_true")
+argParser.add_argument("-n", "--nlist", help="Do not list files in console.", action="store_true")
+argParser.add_argument("-f", "--folder", help="Include folders.", action="store_true")
 
 args = argParser.parse_args()
 
