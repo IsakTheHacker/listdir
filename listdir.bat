@@ -1,2 +1,2 @@
 @echo off
-py %~dp0\listdir.py
+py %~dp0\listdir.py %*
