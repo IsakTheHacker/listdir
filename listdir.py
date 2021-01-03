@@ -24,6 +24,8 @@ else:
 if not os.path.exists(directory):
 	print("Directory specified does not exist. Try again!")
 	sys.exit(1)
+else:
+	print("Directory of '{}'\n".format(os.path.abspath(directory)))
 
 #Open index file if --index arg is specified.
 if args.index:
