@@ -20,6 +20,11 @@ if args.path:
 else:
 	directory = os.getcwd()
 
+#Check if directory is valid
+if not os.path.exists(directory):
+	print("Directory specified does not exist. Try again!")
+	sys.exit(1)
+
 #Open index file if --index arg is specified.
 if args.index:
 	file = open("index", "w")
