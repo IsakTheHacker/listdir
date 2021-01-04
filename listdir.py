@@ -3,6 +3,8 @@
 import sys
 import os
 import argparse
+import subprocess
+import platform
 
 argParser = argparse.ArgumentParser()
 
@@ -12,8 +14,17 @@ argParser.add_argument("-n", "--nlist", help="Do not list files in console.", ac
 argParser.add_argument("-f", "--folder", help="Include folders.", action="store_true")
 argParser.add_argument("-p", "--path", help="Path to use. Will use working directory if not specified.")
 argParser.add_argument("-b", "--bare", help="Removes header information when used.", action="store_true")
+argParser.add_argument("-c", "--clip", help="Copy listed files/directories to clipboard", action="store_true")
 
+#Parse args
 args = argParser.parse_args()
+
+if args.clip:
+	if platform.system() == 'Darwin':
+	    copy_keyword = 'pbcopy'
+	elif platform.system() == 'Windows':
+	    copy_keyword = 'clip'
+	dirstring = ""
 
 #Set directory variable
 if args.path:
@@ -43,3 +54,9 @@ for entry in os.scandir(directory):
 	
 	if not args.nlist:								#Check if --nlist arg is not specified. Print if
 		print(entry.name)
+
+	if args.clip:
+		dirstring += entry.name + "\n"
+
+if args.clip:
+	subprocess.run(copy_keyword, universal_newlines=True, input=dirstring)
